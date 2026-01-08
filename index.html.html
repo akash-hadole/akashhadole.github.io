@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akash Hadole | Cloud & DevOps Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#020617; --bg2:#0f172a;
+  --card:rgba(15,23,42,.75);
+  --border:#1e293b;
+  --accent:#60a5fa; --accent2:#93c5fd;
+  --text:#e5e7eb;
+}
+.light{
+  --bg1:#f8fafc; --bg2:#eef2ff;
+  --card:rgba(255,255,255,.9);
+  --border:#e5e7eb;
+  --accent:#2563eb; --accent2:#1d4ed8;
+  --text:#0f172a;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:'Inter',sans-serif;color:var(--text);
+  
+background:
+  linear-gradient(180deg, rgba(2,6,23,0.92), rgba(15,23,42,0.92)),
+  url('images/bg.jpg');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+  scroll-behavior:smooth;
+}
+a{color:var(--accent);text-decoration:none}
+
+/* Progress */
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:9999}
+
+/* Toggle */
+.toggle{
+  position:fixed;left:20px;top:20px;z-index:9999;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:999px;padding:.45rem .7rem;cursor:pointer
+}
+
+/* Socials */
+.socials{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px}
+.socials a{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--card);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;color:var(--accent2);
+  backdrop-filter:blur(8px);font-weight:600
+}
+
+/* Header */
+header{
+  text-align:center;padding:5rem 2rem;
+  background:radial-gradient(circle at top,var(--accent2),var(--bg1) 70%)
+}
+header img{width:155px;height:155px;border-radius:50%;border:4px solid var(--accent2)}
+header h1{font-size:3.1rem;margin:.8rem 0 .3rem}
+#typing{font-size:1.3rem;min-height:30px}
+.resume-btn{
+  display:inline-block;margin-top:1.8rem;padding:.85rem 1.9rem;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:999px;color:var(--accent2);font-weight:600
+}
+
+/* Sections */
+section{max-width:1150px;margin:auto;padding:3.8rem 2rem}
+h2{font-size:2.2rem;border-left:4px solid var(--accent);padding-left:1rem;margin-bottom:1.6rem}
+.reveal{opacity:0;transform:translateY(40px);transition:.9s}
+.reveal.active{opacity:1;transform:none}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.6rem}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:1.9rem;
+  backdrop-filter:blur(8px);
+  box-shadow:0 10px 30px rgba(0,0,0,.25)
+}
+.card ul{padding-left:1.2rem}
+
+/* Skills */
+.skill-bar{margin-bottom:1.4rem}
+.skill-bar span{font-weight:600}
+.skill-bar div{background:#1e293b;border-radius:999px;overflow:hidden;margin-top:6px}
+.light .skill-bar div{background:#e5e7eb}
+.skill-bar div span{display:block;height:12px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+
+/* Badges */
+.badges{display:flex;flex-wrap:wrap;gap:.6rem}
+.badge{
+  padding:.4rem .7rem;border-radius:999px;
+  background:var(--card);border:1px solid var(--border);
+  font-size:.85rem
+}
+
+/* Footer */
+footer{text-align:center;padding:2.2rem;background:var(--card);border-top:1px solid var(--border);opacity:.85}
+
+/* Particles */
+canvas{position:fixed;inset:0;z-index:-1}
+
+.socials a i{
+  font-size:1.2rem;
+}
+.socials a:hover{
+  transform:scale(1.08);
+  transition:.25s;
+}
+
+
+section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top, rgba(96,165,250,0.08), transparent 60%);
+  pointer-events:none;
+}
+section{
+  position:relative;
+}
+
+
+/* --- Cloud-themed background enhancement --- */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(56,189,248,0.18), transparent 60%),
+    radial-gradient(900px 500px at 80% 10%, rgba(125,211,252,0.14), transparent 60%),
+    linear-gradient(180deg, rgba(2,6,23,0.75), rgba(15,23,42,0.85));
+  z-index:-2;
+}
+
+.clouds{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400"><g fill="rgba(255,255,255,0.06)"><path d="M200 260c-60 0-110-35-110-80 0-36 33-66 77-76 10-46 54-80 108-80 64 0 116 47 116 105 48 7 84 43 84 87 0 49-45 89-100 89H200z"/><path d="M720 240c-55 0-100-33-100-74 0-33 30-60 70-69 9-42 50-73 100-73 59 0 107 43 107 96 44 6 78 39 78 79 0 45-42 81-93 81H720z"/></g></svg>');
+  background-size: 1200px 400px;
+  animation: cloudDrift 60s linear infinite;
+  opacity:0.9;
+}
+
+@keyframes cloudDrift{
+  from{ background-position: 0 0; }
+  to{ background-position: 1200px 0; }
+}
+
+
+/* --- Cloud network overlay --- */
+.network{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:0.35;
+}
+
+.network svg{
+  width:100%;
+  height:100%;
+}
+
+.network line{
+  stroke:rgba(56,189,248,0.35);
+  stroke-width:1;
+  stroke-dasharray:4 6;
+  animation: dash 20s linear infinite;
+}
+
+@keyframes dash{
+  to{ stroke-dashoffset:-200; }
+}
+
+</style>
+</head>
+
+<body>
+<div class="clouds"></div>
+
+<div class="network">
+<svg viewBox="0 0 1000 600" preserveAspectRatio="none">
+  <line x1="100" y1="100" x2="400" y2="200"/>
+  <line x1="400" y1="200" x2="700" y2="120"/>
+  <line x1="700" y1="120" x2="900" y2="300"/>
+  <line x1="200" y1="350" x2="500" y2="260"/>
+  <line x1="500" y1="260" x2="800" y2="400"/>
+  <line x1="300" y1="150" x2="300" y2="450"/>
+</svg>
+</div>
+
+
+<canvas id="particles"></canvas>
+<div id="progress"></div>
+<button class="toggle" id="mode">🌙 / ☀️</button>
+
+<div class="socials">
+  <a href="https://linkedin.com/in/akash-hadole-720b922b4" target="_blank" title="LinkedIn">
+    <i class="fa-brands fa-linkedin-in"></i>
+  </a>
+  <a href="https://github.com/akash-hadole" target="_blank" title="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a href="mailto:hadoleakash2@gmail.com" title="Email">
+    <i class="fa-solid fa-envelope"></i>
+  </a>
+</div>
+
+<header>
+  <img src="images/profile.jpg" alt="Akash Hadole">
+  <h1>Akash Hadole</h1>
+  <p id="typing"></p>
+  <a class="resume-btn" href="resume/Akash_Hadole_Resume.pdf" target="_blank">Download Resume</a>
+</header>
+
+<section class="reveal">
+<h2>About Me</h2>
+<p>Cloud & DevOps Engineer (Fresher) with hands-on AWS experience, focusing on automation, reliability, and scalable infrastructure.</p>
+</section>
+
+<section class="reveal">
+<h2>Tech Stack</h2>
+<div class="badges">
+  <span class="badge"><i class="fa-brands fa-aws"></i> AWS</span>
+  <span class="badge"><i class="fa-solid fa-server"></i> EC2</span>
+  <span class="badge"><i class="fa-solid fa-database"></i> RDS</span>
+  <span class="badge"><i class="fa-solid fa-network-wired"></i> VPC</span>
+  <span class="badge"><i class="fa-solid fa-bucket"></i> S3</span>
+  <span class="badge"><i class="fa-solid fa-globe"></i> CloudFront</span>
+  <span class="badge"><i class="fa-brands fa-docker"></i> Docker</span>
+  <span class="badge"><i class="fa-brands fa-linux"></i> Linux</span>
+  <span class="badge"><i class="fa-brands fa-github"></i> GitHub</span>
+  <span class="badge"><i class="fa-solid fa-diagram-project"></i> Kubernetes</span>
+</div>
+</section>
+
+<section class="reveal">
+<h2>Skills</h2>
+
+<h3>AWS Cloud Services</h3>
+<div class="skill-bar"><span>EC2</span><div><span style="width:85%"></span></div></div>
+<div class="skill-bar"><span>VPC</span><div><span style="width:80%"></span></div></div>
+<div class="skill-bar"><span>RDS</span><div><span style="width:75%"></span></div></div>
+<div class="skill-bar"><span>S3</span><div><span style="width:80%"></span></div></div>
+<div class="skill-bar"><span>CloudFront</span><div><span style="width:70%"></span></div></div>
+<div class="skill-bar"><span>Route 53</span><div><span style="width:70%"></span></div></div>
+<div class="skill-bar"><span>CloudWatch</span><div><span style="width:75%"></span></div></div>
+<div class="skill-bar"><span>IAM</span><div><span style="width:80%"></span></div></div>
+<div class="skill-bar"><span>Lambda</span><div><span style="width:60%"></span></div></div>
+
+<h3 style="margin-top:2rem">DevOps & System Skills</h3>
+
+<div class="skill-bar"><span>Git / GitHub</span><div><span style="width:80%"></span></div></div>
+<div class="skill-bar"><span>Linux (Ubuntu)</span><div><span style="width:85%"></span></div></div>
+<div class="skill-bar"><span>Docker</span><div><span style="width:75%"></span></div></div>
+<div class="skill-bar"><span>Kubernetes</span><div><span style="width:60%"></span></div></div>
+<div class="skill-bar"><span>Networking Basics</span><div><span style="width:70%"></span></div></div>
+
+</section>
+
+<section class="reveal">
+<h2>Projects</h2>
+<div class="cards">
+
+<div class="card">
+<h3>Three-Tier Web Application Deployment</h3>
+<p>Designed and deployed a scalable three-tier architecture on AWS.</p>
+<ul>
+<li>EC2 application tier with RDS database</li>
+<li>Elastic Load Balancer for high availability</li>
+<li>IAM roles, security groups & CloudWatch monitoring</li>
+</ul>
+<p><strong>Tech:</strong> AWS EC2, RDS, ELB, IAM, CloudWatch</p>
+</div>
+
+<div class="card">
+<h3>Static Website Hosting on AWS</h3>
+<p>Hosted a highly available static website using AWS managed services.</p>
+<ul>
+<li>Website hosted on Amazon S3</li>
+<li>CloudFront CDN for global delivery</li>
+<li>DNS routing using Route 53</li>
+</ul>
+<p><strong>Tech:</strong> S3, CloudFront, Route 53</p>
+</div>
+
+<div class="card">
+<h3>Dockerized Apache Web Hosting</h3>
+<p>Containerized Apache web server for consistent deployment.</p>
+<ul>
+<li>Created custom Dockerfile</li>
+<li>Apache running inside Docker container</li>
+<li>Application exposed on port 80</li>
+</ul>
+<p><strong>Tech:</strong> Docker, Apache, Linux</p>
+</div>
+
+</div>
+
+
+<section class="reveal">
+<h2>Contact Me</h2>
+
+<div class="cards">
+
+  <a class="card" href="mailto:hadoleakash2@gmail.com" style="text-align:center">
+    <i class="fa-solid fa-envelope" style="font-size:3rem;color:#ef4444"></i>
+    <h3>Email</h3>
+    <p>hadoleakash2@gmail.com</p>
+  </a>
+
+  <a class="card" href="https://linkedin.com/in/akash-hadole-720b922b4" target="_blank" style="text-align:center">
+    <i class="fa-brands fa-linkedin" style="font-size:3rem;color:#0a66c2"></i>
+    <h3>LinkedIn</h3>
+    <p>Connect professionally</p>
+  </a>
+
+  <a class="card" href="https://github.com/akash-hadole" target="_blank" style="text-align:center">
+    <i class="fa-brands fa-github" style="font-size:3rem;color:#000"></i>
+    <h3>GitHub</h3>
+    <p>View my projects</p>
+  </a>
+
+</div>
+<hr style="margin:2.5rem 0;border:0;border-top:1px solid var(--border)">
+
+<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
+      style="max-width:520px;margin:2rem auto;display:flex;flex-direction:column;gap:14px;">
+
+  <input type="hidden" name="_subject" value="New message from Akash Hadole Portfolio">
+  <input type="text" name="_gotcha" style="display:none">
+
+  <input type="text" name="name" placeholder="Your Name" required
+         style="padding:14px;border-radius:10px;border:1px solid var(--border)">
+
+  <input type="email" name="email" placeholder="Your Email" required
+         style="padding:14px;border-radius:10px;border:1px solid var(--border)">
+
+  <textarea name="message" rows="5" placeholder="Your Message" required
+            style="padding:14px;border-radius:10px;border:1px solid var(--border)"></textarea>
+
+  <button type="submit"
+          style="padding:14px;border:none;border-radius:999px;
+                 background:linear-gradient(90deg,var(--accent),var(--accent2));
+                 color:white;font-weight:600;cursor:pointer">
+    Send Message
+  </button>
+</form>
+
+</section>
+
+<section class="reveal">
+<h2>Let’s Work Together</h2>
+</section>
+
+<section class="reveal">
+<h2>Let’s Work Together</h2>
+<p>I’m actively looking for Cloud / DevOps roles. Let’s connect and build reliable systems.</p>
+</section>
+
+<footer>© 2026 Akash Hadole | Cloud & DevOps Portfolio</footer>
+
+<script>
+/* typing */
+const roles=["Cloud / DevOps Engineer","AWS Infrastructure Enthusiast","Automation & CI/CD Learner"];
+let i=0,j=0,del=false;const t=document.getElementById("typing");
+(function type(){const c=roles[i];t.textContent=c.slice(0,j);
+if(!del&&j++===c.length)del=true;
+else if(del&&j--===0){del=false;i=(i+1)%roles.length}
+setTimeout(type,del?60:120)})();
+
+/* reveal */
+const reveals=document.querySelectorAll(".reveal");
+const obs=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add("active")),{threshold:.2});
+reveals.forEach(r=>obs.observe(r));
+
+/* progress */
+window.addEventListener("scroll",()=>{
+document.getElementById("progress").style.width=(window.scrollY/(document.body.scrollHeight-innerHeight))*100+"%";
+});
+
+/* mode */
+document.getElementById("mode").onclick=()=>document.body.classList.toggle("light");
+
+/* particles */
+const c=document.getElementById("particles"),ctx=c.getContext("2d");
+function resize(){c.width=innerWidth;c.height=innerHeight}resize();addEventListener("resize",resize);
+const P=[...Array(70)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3}));
+(function draw(){
+ctx.clearRect(0,0,c.width,c.height);
+ctx.fillStyle="rgba(147,197,253,.25)";
+P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>c.width)p.vx*=-1;if(p.y<0||p.y>c.height)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,1.2,0,6.28);ctx.fill()});
+requestAnimationFrame(draw);
+})();
+</script>
+
+</body>
+</html>
